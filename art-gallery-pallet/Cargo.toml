@@ -1,10 +1,9 @@
 [package]
 name = "art-gallery-pallet"
-description = "Auction module that implements `Auction` trait."
-repository = "https://github.com/open-web3-stack/open-runtime-module-library/tree/master/auction"
+description = "Art Gallery module that implements `Art Gallery` trait."
 license = "Apache-2.0"
 version = "0.3.3-dev"
-authors = ["Acala Developers"]
+authors = ["Usetech"]
 edition = "2018"
 
 [dependencies]
@@ -16,10 +15,8 @@ sp-std = { version = "2.0.0", default-features = false }
 
 frame-support = { version = "2.0.0", default-features = false }
 frame-system = { version = "2.0.0", default-features = false }
-
-orml-traits = { path = "../traits", version = "0.3.3-dev", default-features = false }
-orml-nft = { path = "../nft", version = "0.3.5-dev", default-features = false }
-
+orml-traits = { version = "0.3.3-dev", default-features = false, git = "https://github.com/open-web3-stack/open-runtime-module-library.git" }
+orml-nft = { version = "0.3.5-dev", default-features = false, git = "https://github.com/open-web3-stack/open-runtime-module-library.git" }
 
 [dev-dependencies]
 sp-core = { version = "2.0.0", default-features = false }
