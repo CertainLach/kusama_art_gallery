@@ -70,6 +70,9 @@ pub trait Trait: frame_system::Config + nft::Config + atomic_swap::Config {
 	/// Token default cost.
 	type DefaultCost: Get<BalanceOf<Self>>;
 
+	/// Default class data.
+	type DefaultClassData: Get<Self::ClassData>;
+
 	/// The balance of an account.
 	type IpfsPin: Parameter + Member + AtLeast32BitUnsigned + Default + Copy;
 }
@@ -225,9 +228,9 @@ decl_module! {
 		fn deposit_event() = default;
 
 		#[weight = 0]
-		pub fn create_collection(origin, data :T::ClassData) -> DispatchResult {
+		pub fn create_collection(origin) -> DispatchResult {
 			let _who = ensure_signed(origin)?;
-			let collection_id = nft::Module::<T>::create_class(&_who, vec![], data).unwrap();
+			let collection_id = nft::Module::<T>::create_class(&_who, vec![], T::DefaultClassData::get()).unwrap();
 
 			Self::deposit_event(RawEvent::CollectionCreated(collection_id));
 
