@@ -35,7 +35,7 @@ use frame_support::traits::{
 use sp_runtime::traits::Saturating;
 use frame_system::{ ensure_signed, ensure_root };
 use orml_nft::{self as nft};
-use pallet_atomic_swap::{self as atomic_swap};
+// use pallet_atomic_swap::{self as atomic_swap};
 use sp_runtime::{ 	
 	traits::{AtLeast32BitUnsigned, Member, Zero},
 	DispatchResult, };
@@ -46,7 +46,7 @@ const PALLET_ID: LockIdentifier = *b"gallery ";
 
 type BalanceOf<T> = <<T as Trait>::Currency as Currency<<T as frame_system::Config>::AccountId>>::Balance;
 
-#[derive(Encode, Decode, Eq, Debug, Clone, PartialEq)]
+#[derive(Encode, Decode, Debug, Clone, Eq, PartialEq)]
 pub enum ReportReason {
 	None,
 	Illigal,
@@ -55,13 +55,13 @@ pub enum ReportReason {
 	Reported
 }
 
-#[derive(Encode, Decode, Debug, Clone, PartialEq)]
+#[derive(Encode, Decode, Clone, Debug, PartialEq)]
 pub struct ExtendedInfo {
     pub display_flag: bool,
     pub report: ReportReason,
 }
 
-pub trait Trait: frame_system::Config + nft::Config + atomic_swap::Config {
+pub trait Trait: frame_system::Config + nft::Config  { //+ atomic_swap::Config
 	type Event: From<Event<Self>> + Into<<Self as frame_system::Config>::Event>;
 
 	/// The currency trait.
